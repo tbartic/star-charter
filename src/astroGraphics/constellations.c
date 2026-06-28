@@ -85,9 +85,6 @@ void plot_constellation_boundaries(chart_config *s, line_drawer *ld) {
     double x_first = 0, y_first = 0;
     char line[FNAME_LENGTH], *scan, constellation[6] = "@@@@";
 
-    // This must be set to true initially, to ensure that colour is set when we start tracing the first constellation
-    int was_highlighted = 1;
-
     // Parse constellation_highlight into a list of 3-letter abbreviations, comma-separated
     // e.g. "Ori,Tau,Gem"
     // char highlight_buf[FNAME_LENGTH];
@@ -174,7 +171,6 @@ void plot_constellation_boundaries(chart_config *s, line_drawer *ld) {
                                       s->star_col.red, s->star_col.grn, s->star_col.blu,
                                       s->star_col.alpha);
                 cairo_set_line_width(s->cairo_draw, 2 * s->line_width_base);
-                was_highlighted = 1;
             } else {
                 cairo_set_source_rgba(s->cairo_draw,
                                       s->constellation_boundary_col.red,
@@ -182,7 +178,6 @@ void plot_constellation_boundaries(chart_config *s, line_drawer *ld) {
                                       s->constellation_boundary_col.blu,
                                       s->constellation_boundary_col.alpha);
                 cairo_set_line_width(s->cairo_draw, 0.8 * s->line_width_base);
-                was_highlighted = 0;
             }
             
         }
